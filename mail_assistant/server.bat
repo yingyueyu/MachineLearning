@@ -1,0 +1,1 @@
+set MODEL=./models/chatglm3-ggml-q8_0.bin && uvicorn chatglm_cpp.openai_api:app --host 127.0.0.1 --port 8000

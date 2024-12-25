@@ -1,0 +1,10 @@
+id,name,label,img_path
+0,Airplane1.jpg,Airplane,data\Airplane\Airplane1.jpg
+1,Airplane2.jpg,Airplane,data\Airplane\Airplane2.jpg
+2,Airplane3.jpg,Airplane,data\Airplane\Airplane3.jpg
+3,Car1.jpg,Car,data\Car\Car1.jpg
+4,Car2.jpg,Car,data\Car\Car2.jpg
+5,Car3.jpg,Car,data\Car\Car3.jpg
+6,Ship1.jpg,Ship,data\Ship\Ship1.jpg
+7,Ship2.jpg,Ship,data\Ship\Ship2.jpg
+8,Ship3.jpg,Ship,data\Ship\Ship3.jpg

@@ -1,0 +1,11 @@
+{
+  "name": "小明",
+  "age": 22,
+  "hobby": ["唱跳", "爬山", "游泳"],
+  "isstudent": true,
+  "money": null,
+  "adrr": {
+    "city": "cq",
+    "postcode": 510030
+  }
+}

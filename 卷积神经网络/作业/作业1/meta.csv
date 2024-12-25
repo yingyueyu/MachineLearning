@@ -1,0 +1,5 @@
+id,img_path,label
+0,./img/cat1.jfif,0
+1,./img/cat2.jfif,0
+2,./img/dog1.jfif,1
+3,./img/dog2.jfif,1

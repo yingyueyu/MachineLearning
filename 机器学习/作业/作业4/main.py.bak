@@ -1,0 +1,71 @@
+import numpy as np
+from matplotlib import pyplot as plt
+import matplotlib.patches as patches
+
+
+# np.random.seed(150)
+
+N = 20
+points = np.random.rand(N, 2)
+# 0 是蓝队  1 是红队
+labels = np.random.randint(0, 2, (N, 1))
+samples = np.concatenate((points, labels), axis=1)
+
+# 随机一个受测点
+idx = np.random.randint(0, N)
+samples = list(samples)
+A = np.array(samples.pop(idx))
+samples = np.array(samples)
+
+print(A)
+print(f'A 属于{"蓝" if A[2] == 0 else "红"}队')
+
+
+class KNN:
+    # x: 二维数据
+    def __init__(self, x, samples):
+        self.points = samples[:, :-1]
+        self.labels = samples[:, -1]
+        self.distances = {self.distance(x, s): int(self.labels[i]) for i, s in enumerate(self.points)}
+        self.sorted_dis = sorted(self.distances.items(), key=lambda item: item[0])
+
+    def predict(self, k):
+        k_samples = self.sorted_dis[:k]
+        classes = [s[1] for s in k_samples]
+        tmp = np.bincount(classes, minlength=2)
+        pro = tmp / np.sum(tmp)
+        return pro
+
+    def distance(self, x1, x2):
+        return np.sqrt(np.sum((x1 - x2) ** 2))
+
+
+model = KNN(A[:-1], samples)
+k = 0
+while True:
+    k += 2
+    pro = model.predict(k)
+    if 0 in pro:
+        continue
+    equal_score = 1 / 2
+    # 两边概率相同，再算上自己，则满足条件，所以返回
+    if np.all(pro == equal_score):
+        break
+    idx = np.argmax(pro)
+    if idx == A[2]:
+        break
+
+print(k)
+r = model.sorted_dis[k - 1][0]
+print(r)
+
+fig, ax = plt.subplots()
+sc = ax.scatter(samples[:, 0], samples[:, 1], 64, c=samples[:, 2], cmap='bwr')
+ax.scatter(A[0], A[1], 48, c='g', edgecolor='b' if A[2] == 0 else 'r', linewidth=2)
+
+circle = patches.Circle(tuple(A[:-1]), radius=r, color='r', fill=False)
+ax.add_patch(circle)
+
+plt.colorbar(sc)
+plt.axis('equal')
+plt.show()
